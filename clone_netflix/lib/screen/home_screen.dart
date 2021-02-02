@@ -14,24 +14,32 @@ class _HomeScreenState extends State<HomeScreen> {
       'title': '사랑의 불시착',
       'keyword': '사랑/로맨스/판타지',
       'poster': 'test_movie_1.png',
+      'info':
+          '뜻밖의 돌풍은 행운일까, 불운일까. 패러글라이딩 사고로 북한에 불시착한 재벌 딸. 그곳에서 깐간한 북한군 장교를 만난다. 이 와중에 피어오르는 낯선 감정은 뭐지?',
       'like': false
     }),
     Movie.fromMap({
       'title': '사랑의 불시착',
       'keyword': '사랑/로맨스/판타지',
       'poster': 'test_movie_1.png',
+      'info':
+          '뜻밖의 돌풍은 행운일까, 불운일까. 패러글라이딩 사고로 북한에 불시착한 재벌 딸. 그곳에서 깐간한 북한군 장교를 만난다. 이 와중에 피어오르는 낯선 감정은 뭐지?',
       'like': false
     }),
     Movie.fromMap({
       'title': '사랑의 불시착',
       'keyword': '사랑/로맨스/판타지',
       'poster': 'test_movie_1.png',
+      'info':
+          '뜻밖의 돌풍은 행운일까, 불운일까. 패러글라이딩 사고로 북한에 불시착한 재벌 딸. 그곳에서 깐간한 북한군 장교를 만난다. 이 와중에 피어오르는 낯선 감정은 뭐지?',
       'like': false
     }),
     Movie.fromMap({
       'title': '사랑의 불시착',
       'keyword': '사랑/로맨스/판타지',
       'poster': 'test_movie_1.png',
+      'info':
+          '뜻밖의 돌풍은 행운일까, 불운일까. 패러글라이딩 사고로 북한에 불시착한 재벌 딸. 그곳에서 깐간한 북한군 장교를 만난다. 이 와중에 피어오르는 낯선 감정은 뭐지?',
       'like': false
     }),
   ];
