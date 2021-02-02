@@ -2,6 +2,7 @@ import 'package:clone_netflix/model/model_movie.dart';
 import 'package:clone_netflix/widget/box_slider.dart';
 import 'package:clone_netflix/widget/carousel_slider.dart';
 import 'package:clone_netflix/widget/circle_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -9,48 +10,30 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Movie> movies = [
-    Movie.fromMap({
-      'title': '사랑의 불시착',
-      'keyword': '사랑/로맨스/판타지',
-      'poster': 'test_movie_1.png',
-      'info':
-          '뜻밖의 돌풍은 행운일까, 불운일까. 패러글라이딩 사고로 북한에 불시착한 재벌 딸. 그곳에서 깐간한 북한군 장교를 만난다. 이 와중에 피어오르는 낯선 감정은 뭐지?',
-      'like': false
-    }),
-    Movie.fromMap({
-      'title': '사랑의 불시착',
-      'keyword': '사랑/로맨스/판타지',
-      'poster': 'test_movie_1.png',
-      'info':
-          '뜻밖의 돌풍은 행운일까, 불운일까. 패러글라이딩 사고로 북한에 불시착한 재벌 딸. 그곳에서 깐간한 북한군 장교를 만난다. 이 와중에 피어오르는 낯선 감정은 뭐지?',
-      'like': false
-    }),
-    Movie.fromMap({
-      'title': '사랑의 불시착',
-      'keyword': '사랑/로맨스/판타지',
-      'poster': 'test_movie_1.png',
-      'info':
-          '뜻밖의 돌풍은 행운일까, 불운일까. 패러글라이딩 사고로 북한에 불시착한 재벌 딸. 그곳에서 깐간한 북한군 장교를 만난다. 이 와중에 피어오르는 낯선 감정은 뭐지?',
-      'like': false
-    }),
-    Movie.fromMap({
-      'title': '사랑의 불시착',
-      'keyword': '사랑/로맨스/판타지',
-      'poster': 'test_movie_1.png',
-      'info':
-          '뜻밖의 돌풍은 행운일까, 불운일까. 패러글라이딩 사고로 북한에 불시착한 재벌 딸. 그곳에서 깐간한 북한군 장교를 만난다. 이 와중에 피어오르는 낯선 감정은 뭐지?',
-      'like': false
-    }),
-  ];
+  // firestore instance
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  Stream<QuerySnapshot> streamData;
 
   @override
   void initState() {
     super.initState();
+    streamData = firestore.collection('movie').snapshots();
   }
 
-  @override
-  Widget build(BuildContext context) {
+  // streamData로 data를 추출하여 Widget으로 만듦
+  Widget _fetchData(BuildContext context) {
+    return StreamBuilder(
+      stream: FirebaseFirestore.instance.collection('movie').snapshots(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData)
+          return LinearProgressIndicator(); // 실제 data를 가져오지 못하면 로딩화면
+        return _buildBody(context, snapshot.data.docs); // data를 가져오면 Widget 생성
+      }, // 기존 snapshot.data.documents -> snapshot.data.docs로 변경 (ref : QuerySnapshot)
+    );
+  }
+
+  Widget _buildBody(BuildContext context, List<DocumentSnapshot> snapshot) {
+    List<Movie> movies = snapshot.map((d) => Movie.fromsnapshot(d)).toList();
     return ListView(
       children: <Widget>[
         Stack(
@@ -68,6 +51,11 @@ class _HomeScreenState extends State<HomeScreen> {
         )
       ],
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _fetchData(context);
   }
 }
 
