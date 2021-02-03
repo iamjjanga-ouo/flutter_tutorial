@@ -18,10 +18,10 @@ class Movie {
         info = map['info'],
         like = map['like'];
 
-  Movie.fromsnapshot(DocumentSnapshot snapshot)
+  Movie.fromSnapshot(DocumentSnapshot snapshot)
       : this.fromMap(snapshot.data(), reference: snapshot.reference);
 
   @override
-  // String toString() => "Movie<$title:$keyword>";
-  String toString() => "$info";
+  String toString() => "Movie<$title:$keyword>";
+  // String toString() => "$info";
 }

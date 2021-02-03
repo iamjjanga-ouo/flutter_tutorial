@@ -85,7 +85,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                 ),
                                 Container(
                                   padding: EdgeInsets.all(5),
-                                  child: Text(widget.movie.toString()),
+                                  child: Text(widget.movie.info),
                                 ),
                                 Container(
                                   padding: EdgeInsets.all(5),

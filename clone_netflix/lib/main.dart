@@ -1,3 +1,5 @@
+import 'package:clone_netflix/screen/like_screen.dart';
+import 'package:clone_netflix/screen/search_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:clone_netflix/screen/home_screen.dart';
@@ -33,16 +35,8 @@ class _MyAppState extends State<MyApp> {
             physics: NeverScrollableScrollPhysics(),
             children: <Widget>[
               HomeScreen(),
-              Container(
-                child: Center(
-                  child: Text('search'),
-                ),
-              ),
-              Container(
-                child: Center(
-                  child: Text('save'),
-                ),
-              ),
+              SearchScreen(),
+              LikeScreen(),
               MoreScreen(),
             ],
           ),

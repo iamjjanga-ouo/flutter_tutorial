@@ -33,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildBody(BuildContext context, List<DocumentSnapshot> snapshot) {
-    List<Movie> movies = snapshot.map((d) => Movie.fromsnapshot(d)).toList();
+    List<Movie> movies = snapshot.map((d) => Movie.fromSnapshot(d)).toList();
     return ListView(
       children: <Widget>[
         Stack(
